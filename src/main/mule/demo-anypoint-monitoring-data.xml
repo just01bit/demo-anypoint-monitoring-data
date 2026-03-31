@@ -1,6 +1,160 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
-  
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:anypoint-mq="http://www.mulesoft.org/schema/mule/anypoint-mq" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/anypoint-mq http://www.mulesoft.org/schema/mule/anypoint-mq/current/mule-anypoint-mq.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+    <flow name="monitoring-data-flow" doc:id="d1a2e3f4-5678-4abc-9d01-234567890abc">
+        <http:listener doc:name="HTTP Listener" doc:id="12345678-9abc-def0-1234-56789abcdef0" config-ref="HTTP_Listener_config" path="/data" allowedMethods="GET"/>
+        <ee:transform doc:name="Transform Message" doc:id="abcd1234-5678-9abc-def0-1234567890ab">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+                    output application/java
+                    ---
+                    {
+                        orgId: payload.orgId,
+                        envId: payload.envId,
+                        entityType: payload.entityType,
+                        entityId: payload.entityId,
+                        fileType: payload.fileType,
+                        date: payload.date as Date {format: "yyyy-MM-dd"}
+                    }]]>
+                </ee:set-payload>
+            </ee:message>
+        </ee:transform>
+        <set-variable variableName="baseURL" value="#['https://monitoring.anypoint.mulesoft.com/monitoring/archive/api/v1/organizations/' ++ payload.orgId ++ '/environments/' ++ payload.envId ++ '/' ++ payload.entityType]" doc:name="Set Base URL"/>
+        <set-variable variableName="originalPayload" value="#[payload]" doc:name="Store Original Payload"/>
+        <flow-ref name="get-access-token" doc:name="Get Access Token"/>
+        <http:request method="GET" doc:name="Get Resource IDs" doc:id="5678abcd-9abc-def0-1234-56789abcdef0" config-ref="HTTP_Request_configuration" url="#[vars.baseURL]" outputMimeType="application/json">
+            <http:headers><![CDATA[#[output application/java
+                ---
+                {
+                    "Authorization": "Bearer " ++ vars.accessToken
+                }]]]>
+            </http:headers>
+        </http:request>
+        <ee:transform doc:name="Filter Resources" doc:id="1234abcd-5678-9abc-def0-1234567890ab">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+                    output application/java
+                    ---
+                    payload.resources filter (resource) -> resource.id contains vars.originalPayload.entityId
+                ]]>
+                </ee:set-payload>
+            </ee:message>
+        </ee:transform>
+        <set-variable variableName="aggregatedData" value="#[[]]" doc:name="Initialize Aggregated Data"/>
+        <foreach doc:name="For Each Resource ID" doc:id="abcd5678-9abc-def0-1234-56789abcdef0" collection="#[payload]">
+            <set-variable variableName="currentResourceId" value="#[payload.id]" doc:name="Store Current Resource ID"/>
+            <http:request method="GET" doc:name="Get File Metadata" config-ref="HTTP_Request_configuration" url="#[vars.baseURL ++ '/' ++ payload.id ++ '/' ++ vars.originalPayload.fileType ++ '/' ++ vars.originalPayload.date.year ++ '/' ++ (vars.originalPayload.date.month as String {format: '00'}) ++ '/' ++ (vars.originalPayload.date.day as String {format: '00'})]" outputMimeType="application/json">
+                <http:headers><![CDATA[#[output application/java
+                    ---
+                    {
+                        "Authorization": "Bearer " ++ vars.accessToken
+                    }]]]>
+                </http:headers>
+            </http:request>
+            <ee:transform doc:name="Aggregate Data" doc:id="5678abcd-1234-9abc-def0-1234567890ab">
+                <ee:message>
+                    <ee:set-payload><![CDATA[%dw 2.0
+                        output application/json
+                        ---
+                        payload.resources map (resource) -> {
+                            fileName: resource.id,
+                            time: resource.time,
+                            resourceId: vars.currentResourceId
+                        }
+                    ]]></ee:set-payload>
+                </ee:message>
+            </ee:transform>
+            <set-variable variableName="aggregatedData" value="#[vars.aggregatedData ++ payload]" doc:name="Accumulate Data"/>
+        </foreach>
+        <ee:transform doc:name="Set Aggregated Payload" doc:id="set-aggregated-payload">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+                    output application/json
+                    ---
+                    vars.aggregatedData
+                ]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+        <ee:transform doc:name="Sort Data" doc:id="9abc1234-5678-def0-1234-56789abcdef0">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+                    output application/json
+                    ---
+                    {
+                        data: payload orderBy ((item) -> item.time)
+                    }]]>
+                </ee:set-payload>
+            </ee:message>
+        </ee:transform>
+        <foreach doc:name="Push to Anypoint MQ" doc:id="1234abcd-5678-9abc-def0-1234567890ab" collection="#[payload.data]">
+            <ee:transform doc:name="Prepare MQ Message" doc:id="prepare-mq-message">
+                <ee:message>
+                    <ee:set-payload><![CDATA[%dw 2.0
+                        output application/json
+                        ---
+                        {
+                            fileName: payload.fileName,
+                            time: payload.time,
+                            resourceId: payload.resourceId,
+                            downloadUrl: vars.baseURL ++ '/' ++ payload.resourceId ++ '/' ++ vars.originalPayload.fileType ++ '/' ++ vars.originalPayload.date.year ++ '/' ++ (vars.originalPayload.date.month as String {format: '00'}) ++ '/' ++ (vars.originalPayload.date.day as String {format: '00'}) ++ '/' ++ payload.fileName,
+                            accessToken: vars.accessToken
+                        }]]>
+                    </ee:set-payload>
+                </ee:message>
+            </ee:transform>
+            <anypoint-mq:publish doc:name="Publish to MQ" config-ref="Anypoint_MQ_Config" destination="demo-anypoint-monitoring-data">
+                <anypoint-mq:body><![CDATA[#[payload]]]></anypoint-mq:body>
+            </anypoint-mq:publish>
+            <logger level="INFO" doc:name="Log Published Message" message="Published file info to MQ: #[payload.fileName]"/>
+        </foreach>
+    </flow>
+    
+    <flow name="mq-file-processor-flow" doc:id="mq-file-processor-flow">
+        <anypoint-mq:subscriber doc:name="Subscriber" doc:id="arxdkv" destination="demo-anypoint-monitoring-data" config-ref="Anypoint_MQ_Config"/>
+        <logger level="INFO" doc:name="Log Received Message" message="Received message from MQ: #[payload.fileName]"/>
+        <ee:transform doc:name="Extract Download Info" doc:id="extract-download-info">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+                    output application/json
+                    ---
+                    payload]]>
+                </ee:set-payload>
+            </ee:message>
+            <ee:variables>
+                <ee:set-variable variableName="fileName"><![CDATA[#[payload.fileName]]]></ee:set-variable>
+                <ee:set-variable variableName="downloadUrl"><![CDATA[#[payload.downloadUrl]]]></ee:set-variable>
+                <ee:set-variable variableName="accessToken"><![CDATA[#[payload.accessToken]]]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <http:request method="GET" doc:name="Download File" config-ref="HTTP_Request_configuration" url="#[vars.downloadUrl]" outputMimeType="application/octet-stream">
+            <http:headers><![CDATA[#[output application/java
+                ---
+                {
+                    "Authorization": "Bearer " ++ vars.accessToken
+                }]]]>
+            </http:headers>
+        </http:request>
+        <file:write doc:name="Write File" config-ref="File_Config" path="${output.file.path}" mode="APPEND">
+            <file:content><![CDATA[#[payload]]]></file:content>
+        </file:write>
+        <logger level="INFO" doc:name="Log File Written" message="Successfully wrote file: #[vars.fileName]"/>
+        <error-handler>
+            <on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" type="ANY">
+                <logger level="ERROR" doc:name="Log Error" message="Error processing file #[vars.fileName]: #[error.description]"/>
+            </on-error-continue>
+        </error-handler>
+    </flow>
+    
+    <sub-flow name="get-access-token" doc:id="abcd1234-5678-9abc-def0-1234567890ab">
+        <http:request method="POST" doc:name="Request Token" config-ref="HTTP_Request_configuration" url="https://anypoint.mulesoft.com/accounts/api/v2/oauth2/token" outputMimeType="application/json">
+            <http:body><![CDATA[#[%dw 2.0
+                output application/json
+                ---
+                {
+                    client_id: p('connectedAppClientId'),
+                    client_secret: p('connectedAppClientSecret'),
+                    grant_type: "client_credentials"
+                }]]]></http:body>
+        </http:request>
+        <set-variable variableName="accessToken" value="#[payload.access_token]" doc:name="Set Access Token"/>
+    </sub-flow>
 </mule>

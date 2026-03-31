@@ -1,7 +1,7 @@
 
 ## Objective
 
-Build a MuleSoft application that:
+Build a MuleSoft application - /Users/liang.dai/Documents/01-dev/code-workspace/demo-anypoint-monitoring-data:
 
 1. Accepts an HTTP GET request
 2. Retrieves monitoring archive data from Anypoint APIs

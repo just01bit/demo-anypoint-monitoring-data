@@ -1,0 +1,19 @@
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:anypoint-mq="http://www.mulesoft.org/schema/mule/anypoint-mq" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd                            http://www.mulesoft.org/schema/mule/anypoint-mq http://www.mulesoft.org/schema/mule/anypoint-mq/current/mule-anypoint-mq.xsd                            http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd                            http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+    <anypoint-mq:config doc:name="Anypoint MQ Config" name="Anypoint_MQ_Config">
+        <anypoint-mq:connection clientId="1e2d736992cc4c2fa97d97ac913b7213" clientSecret="4Ab4eeE5F16c417Ab0e50EA39F43FDfC" url="https://mq-ap-southeast-2.anypoint.mulesoft.com/api/v1/organizations/572fe2f8-14c7-48e9-8ab3-2473e2fddccf/environments/b567e4ea-9236-49ee-b7b2-dc4d5da65ed5"></anypoint-mq:connection>
+    </anypoint-mq:config>
+    <configuration-properties doc:name="Configuration properties" file="config.properties"></configuration-properties>
+    <http:listener-config doc:name="HTTP Listener config" name="HTTP_Listener_config">
+        <http:listener-connection host="${http.host}" port="${http.port}">
+            <http:protocol-support></http:protocol-support>
+        </http:listener-connection>
+    </http:listener-config>
+    <http:request-config doc:name="HTTP Request configuration" name="HTTP_Request_configuration">
+        <http:request-connection>
+            <http:protocol-support></http:protocol-support>
+        </http:request-connection>
+    </http:request-config>
+    <file:config doc:name="File Config" name="File_Config">
+        <file:connection></file:connection>
+    </file:config>
+</mule>

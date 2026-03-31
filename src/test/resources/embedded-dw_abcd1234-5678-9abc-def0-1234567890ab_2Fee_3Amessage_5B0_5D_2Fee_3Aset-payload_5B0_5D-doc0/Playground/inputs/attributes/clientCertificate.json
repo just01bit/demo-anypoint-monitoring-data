@@ -1,0 +1,76 @@
+{
+  "basicConstraints": 96,
+  "criticalExtensionOIDs": [
+    "nunc",
+    "nisi",
+    "mi"
+  ],
+  "extendedKeyUsage": [
+    "aliquam",
+    "Aliquam",
+    "arcu"
+  ],
+  "extensions": [
+    {
+      "criticality": false,
+      "oid": "erat"
+    }
+  ],
+  "issuerAlternativeNames": [
+    {
+      "name": "Andi",
+      "type": 49
+    }
+  ],
+  "issuerDN": {
+    "commonName": "Aliquam",
+    "name": "Chad"
+  },
+  "issuerUniqueID": [
+    true,
+    true,
+    true
+  ],
+  "issuerX500Principal": {
+    "name": "Dalton"
+  },
+  "keyUsage": [
+    false,
+    false
+  ],
+  "name": "Coleman",
+  "nonCriticalExtensionOIDs": [
+    "venenatis",
+    "semper",
+    "tempor"
+  ],
+  "notAfter": "2026-03-18",
+  "notBefore": "2024-11-24",
+  "publicKey": {
+    "algorithm": "ac",
+    "modulus": 1,
+    "params": 1,
+    "publicKey": "lectus"
+  },
+  "serialNumber": 10,
+  "serialNumberObject": {
+    "serialNumber": 77
+  },
+  "sigAlgName": "ut",
+  "sigAlgOID": "viverra",
+  "subjectAlternativeNames": [
+    {
+      "name": "Alberto",
+      "type": 62
+    }
+  ],
+  "subjectDN": {
+    "commonName": "lorem",
+    "name": "Al"
+  },
+  "subjectX500Principal": {
+    "name": "Alfonzo"
+  },
+  "type": "dictum",
+  "version": 77
+}

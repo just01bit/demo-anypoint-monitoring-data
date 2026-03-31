@@ -1,0 +1,75 @@
+{
+  "basicConstraints": 62,
+  "criticalExtensionOIDs": [
+    "at",
+    "dolor"
+  ],
+  "extendedKeyUsage": [
+    "sodales",
+    "Pellentesque",
+    "libero"
+  ],
+  "extensions": [
+    {
+      "criticality": false,
+      "oid": "eros"
+    }
+  ],
+  "issuerAlternativeNames": [
+    {
+      "name": "Chester",
+      "type": 7
+    }
+  ],
+  "issuerDN": {
+    "commonName": "felis",
+    "name": "Cristopher"
+  },
+  "issuerUniqueID": [
+    false,
+    false
+  ],
+  "issuerX500Principal": {
+    "name": "Chris"
+  },
+  "keyUsage": [
+    false,
+    true,
+    false
+  ],
+  "name": "Amada",
+  "nonCriticalExtensionOIDs": [
+    "amet",
+    "sodales",
+    "nisi"
+  ],
+  "notAfter": "2023-08-30",
+  "notBefore": "2024-03-12",
+  "publicKey": {
+    "algorithm": "tincidunt",
+    "modulus": 94,
+    "params": 96,
+    "publicKey": "venenatis"
+  },
+  "serialNumber": 57,
+  "serialNumberObject": {
+    "serialNumber": 60
+  },
+  "sigAlgName": "eros",
+  "sigAlgOID": "Aliquam",
+  "subjectAlternativeNames": [
+    {
+      "name": "Alyssa",
+      "type": 30
+    }
+  ],
+  "subjectDN": {
+    "commonName": "molestie",
+    "name": "Alishia"
+  },
+  "subjectX500Principal": {
+    "name": "Alina"
+  },
+  "type": "Aliquam",
+  "version": 26
+}

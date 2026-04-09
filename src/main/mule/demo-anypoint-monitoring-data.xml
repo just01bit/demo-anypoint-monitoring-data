@@ -86,6 +86,8 @@
             </ee:message>
         </ee:transform>
         <foreach doc:name="Push to Anypoint MQ" doc:id="1234abcd-5678-9abc-def0-1234567890ab" collection="#[payload.data]">
+            <set-variable doc:name="fileName" doc:id="ryoxkx" variableName="fileName" value="#[payload.fileName]"/>
+            
             <ee:transform doc:name="Prepare MQ Message" doc:id="prepare-mq-message">
                 <ee:message>
                     <ee:set-payload><![CDATA[%dw 2.0
@@ -104,7 +106,7 @@
             <anypoint-mq:publish doc:name="Publish to MQ" config-ref="Anypoint_MQ_Config" destination="demo-anypoint-monitoring-data">
                 <anypoint-mq:body><![CDATA[#[payload]]]></anypoint-mq:body>
             </anypoint-mq:publish>
-            <logger level="INFO" doc:name="Log Published Message" message="Published file info to MQ: #[payload.fileName]"/>
+            <logger level="INFO" doc:name="Log Published Message" message='Published file info to MQ: #[vars.fileName]'/>
         </foreach>
     </flow>
     

@@ -11,10 +11,10 @@ git push -u origin main
 
 ## request payload
 {
-    "orgId": "572fe2f8-14c7-48e9-8ab3-2473e2fddccf",
-    "envId": "b567e4ea-9236-49ee-b7b2-dc4d5da65ed5",
+    "orgId": "{YOUR ANYPOINT ORG ID}",
+    "envId": "{YOUR ENV ID}",
     "entityType": "flex",
-    "entityId": "7886bc31-5215-457e-b343-51bb5548f25d",
+    "entityId": "{YOUR FLEX GATEWAY ENTITY ID}",
     "fileType": "logs",
     "date": "2026-03-30"
 }
@@ -23,7 +23,7 @@ git push -u origin main
 https://monitoring.anypoint.mulesoft.com/monitoring/archive/api/v1/organizations/{orgId}/environments/{envId}/{entityType}
 
 
-# prompt draft
+# Workflow
 
 The application starts from a HTTP Listener, endpoint is /data, method: GET
 

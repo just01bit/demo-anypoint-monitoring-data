@@ -1,75 +1,76 @@
 {
-  "basicConstraints": 62,
+  "basicConstraints": 21,
   "criticalExtensionOIDs": [
-    "at",
-    "dolor"
+    "viverra",
+    "molestie",
+    "aliquam"
   ],
   "extendedKeyUsage": [
-    "sodales",
-    "Pellentesque",
-    "libero"
+    "viverra",
+    "dolor",
+    "lorem"
   ],
   "extensions": [
     {
       "criticality": false,
-      "oid": "eros"
+      "oid": "lectus"
     }
   ],
   "issuerAlternativeNames": [
     {
-      "name": "Chester",
-      "type": 7
+      "name": "Casey",
+      "type": 28
     }
   ],
   "issuerDN": {
-    "commonName": "felis",
-    "name": "Cristopher"
+    "commonName": "viverra",
+    "name": "Alice"
   },
   "issuerUniqueID": [
+    true,
     false,
     false
   ],
   "issuerX500Principal": {
-    "name": "Chris"
+    "name": "Alexandra"
   },
   "keyUsage": [
     false,
-    true,
-    false
+    false,
+    true
   ],
-  "name": "Amada",
+  "name": "Adell",
   "nonCriticalExtensionOIDs": [
-    "amet",
-    "sodales",
-    "nisi"
+    "ipsum",
+    "aliquam"
   ],
-  "notAfter": "2023-08-30",
-  "notBefore": "2024-03-12",
+  "notAfter": "2023-06-25",
+  "notBefore": "2022-03-04",
   "publicKey": {
-    "algorithm": "tincidunt",
-    "modulus": 94,
-    "params": 96,
-    "publicKey": "venenatis"
+    "algorithm": "vitae",
+    "modulus": 41,
+    "params": 57,
+    "publicKey": "molestie"
   },
-  "serialNumber": 57,
+  "serialNumber": 75,
   "serialNumberObject": {
-    "serialNumber": 60
+    "serialNumber": 91
   },
-  "sigAlgName": "eros",
-  "sigAlgOID": "Aliquam",
+  "sigAlgName": "pretium",
+  "sigAlgOID": "sodales",
   "subjectAlternativeNames": [
     {
-      "name": "Alyssa",
-      "type": 30
+      "name": "Alberta",
+      "type": 31
     }
   ],
   "subjectDN": {
-    "commonName": "molestie",
-    "name": "Alishia"
+    "commonName": "Lorem",
+    "name": "Damion"
   },
   "subjectX500Principal": {
-    "name": "Alina"
+    "name": "Amanda"
   },
-  "type": "Aliquam",
-  "version": 26
+  "type": "risus",
+  "version": 45
 }

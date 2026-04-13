@@ -1,6 +1,7 @@
 # demo-anypoint-monitoring-data
 
 ## git commands
+```sh
 echo "# demo-anypoint-monitoring-data" >> README.md
 git init
 git add README.md
@@ -8,8 +9,10 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/just01bit/demo-anypoint-monitoring-data.git
 git push -u origin main
+```
 
 ## request payload
+```json
 {
     "orgId": "{YOUR ANYPOINT ORG ID}",
     "envId": "{YOUR ENV ID}",
@@ -18,16 +21,19 @@ git push -u origin main
     "fileType": "logs",
     "date": "2026-03-30"
 }
+```
 
 ## get list of entity identifiers
+```sh
 https://monitoring.anypoint.mulesoft.com/monitoring/archive/api/v1/organizations/{orgId}/environments/{envId}/{entityType}
-
+```
 
 # Workflow
 
 The application starts from a HTTP Listener, endpoint is /data, method: GET
 
 The input payload is like below:
+```json
 {
     "orgId": "572fe2f8-14c7-48e9-8ab3-2473e2fddccf",
     "envId": "b567e4ea-9236-49ee-b7b2-dc4d5da65ed5",
@@ -36,6 +42,7 @@ The input payload is like below:
     "fileType": "logs",
     "date": "2026-03-30"
 }
+```
 
 - Form the base URL as: https://monitoring.anypoint.mulesoft.com/monitoring/archive/api/v1/organizations/{orgId}/environments/{envId}/{entityType} and save it to variable: "baseURL"
 - Replace "orgId", "envId", "entityType" with "orgId", "envId", "entityType" from the input payload.
@@ -46,16 +53,19 @@ Workflows:
 1. When running the app, the anypoint platform connected app client id and secret are provided via mule runtime args: connectedAppClientId and connectedAppClientSecret
 1.1 Firstly, the app makes a POST call to https://anypoint.mulesoft.com/accounts/api/v2/oauth2/token by passing the connected app's client id and secret to the payload to get the access token.
 1.2 The payload to the token endpoint is:
+```jsonn
 {
     "client_id": "{connectedAppClientId}",
     "client_secret": "{connectedAppClientSecret}",
     "grant_type": "client_credentials"
 }
+```
 1.3 In the response, the access token is from "access_token"
 1.4 For all the following APIs call, we will use the same bearer token authentication method and pass the "access_token"
 
 2. Next, the app calls the GET method to the saved variable "baseURL" to get the list of entity identifiers
 2.1 The response payload is like below:
+```json
 {
     "resources": [
         {
@@ -72,7 +82,9 @@ Workflows:
         }
     ]
 }
+```
 2.2 Use a Transformation to filter the payload by the saved variable "entityId" to get the relevant id list. For instance, we pass "entityId" as "7886bc31-5215-457e-b343-51bb5548f25d", so after this step, we should get the resources id list as below:
+```json
 {
     "resources": [
         {
@@ -83,10 +95,11 @@ Workflows:
         }
     ]
 }
-
+```
 3. Loop resource id from the above, and call the GET method to: {baseURL}/{resourceId}/{fileType}/{year}/{month}/{day} to get the list of data files for that resource id and the specified date.
 3.1 As from the previous step 2, it returns 2 resources id, therefore, we loop each id and get its relevant response like below:
 3.1.1 For resource id - "7886bc31-5215-457e-b343-51bb5548f25d_demo-flex-2025-6b58dc7c4-qlsr8.b567e4ea-9236-49ee-b7b2-dc4d5da65ed5":
+```json
 {
     "resources": [
         {
@@ -106,8 +119,9 @@ Workflows:
         }
     ]
 }
-
+```
 3.1.2 For resource id - "7886bc31-5215-457e-b343-51bb5548f25d_demo-flex-2025-6b58dc7c4-6lp97.b567e4ea-9236-49ee-b7b2-dc4d5da65ed5"
+```json
 {
     "resources": [
         {
@@ -127,10 +141,12 @@ Workflows:
         }
     ]
 }
+```
 3.2 As we can see, in the response, each data has "id" and "time", let's combine all records from all resources and sorted them by "time". 
 3.2.1 "id" mapps to "fileName", "time" to "time". 
 3.2.2 For each combined record, we also append its "resourceId", as we need this for the next API call.
 3.2.3 So the result looks like:
+```json
 {
     "data": [
         {
@@ -165,6 +181,6 @@ Workflows:
         }                                
     ]
 }
-
+```
 4 Loop each record from the result of step 3, and call GET method to the endpoint: {baseURL}/{resourceId}/{fileType}/{year}/{month}/{day}/{fileName}
 4.1 append the response into the local file: /Users/liang.dai/Downloads/flex_log.txt

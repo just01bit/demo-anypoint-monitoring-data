@@ -1,0 +1,74 @@
+{
+  "basicConstraints": 15,
+  "criticalExtensionOIDs": [
+    "faucibus",
+    "viverra",
+    "In"
+  ],
+  "extendedKeyUsage": [
+    "dictum",
+    "lectus",
+    "sodales"
+  ],
+  "extensions": [
+    {
+      "criticality": true,
+      "oid": "tempor"
+    }
+  ],
+  "issuerAlternativeNames": [
+    {
+      "name": "Alonzo",
+      "type": 43
+    }
+  ],
+  "issuerDN": {
+    "commonName": "nunc",
+    "name": "Cletus"
+  },
+  "issuerUniqueID": [
+    true,
+    false
+  ],
+  "issuerX500Principal": {
+    "name": "Ai"
+  },
+  "keyUsage": [
+    false,
+    true
+  ],
+  "name": "Charley",
+  "nonCriticalExtensionOIDs": [
+    "pretium",
+    "ipsum"
+  ],
+  "notAfter": "2021-07-10",
+  "notBefore": "2023-05-16",
+  "publicKey": {
+    "algorithm": "at",
+    "modulus": 59,
+    "params": 47,
+    "publicKey": "ipsum"
+  },
+  "serialNumber": 61,
+  "serialNumberObject": {
+    "serialNumber": 38
+  },
+  "sigAlgName": "nibh",
+  "sigAlgOID": "Nam",
+  "subjectAlternativeNames": [
+    {
+      "name": "Carter",
+      "type": 7
+    }
+  ],
+  "subjectDN": {
+    "commonName": "ipsum",
+    "name": "Corey"
+  },
+  "subjectX500Principal": {
+    "name": "Alix"
+  },
+  "type": "a",
+  "version": 53
+}

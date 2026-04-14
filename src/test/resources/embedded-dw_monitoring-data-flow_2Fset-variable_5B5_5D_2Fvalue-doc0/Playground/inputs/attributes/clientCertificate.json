@@ -1,0 +1,76 @@
+{
+  "basicConstraints": 63,
+  "criticalExtensionOIDs": [
+    "dictum",
+    "mi",
+    "pulvinar"
+  ],
+  "extendedKeyUsage": [
+    "Pellentesque",
+    "amet",
+    "aliquam"
+  ],
+  "extensions": [
+    {
+      "criticality": false,
+      "oid": "eget"
+    }
+  ],
+  "issuerAlternativeNames": [
+    {
+      "name": "Christopher",
+      "type": 12
+    }
+  ],
+  "issuerDN": {
+    "commonName": "sed",
+    "name": "Clement"
+  },
+  "issuerUniqueID": [
+    true,
+    true
+  ],
+  "issuerX500Principal": {
+    "name": "Alise"
+  },
+  "keyUsage": [
+    true,
+    false,
+    false
+  ],
+  "name": "Buster",
+  "nonCriticalExtensionOIDs": [
+    "pulvinar",
+    "amet",
+    "ipsum"
+  ],
+  "notAfter": "2024-03-26",
+  "notBefore": "2022-02-02",
+  "publicKey": {
+    "algorithm": "tempor",
+    "modulus": 53,
+    "params": 85,
+    "publicKey": "dui"
+  },
+  "serialNumber": 39,
+  "serialNumberObject": {
+    "serialNumber": 62
+  },
+  "sigAlgName": "In",
+  "sigAlgOID": "sed",
+  "subjectAlternativeNames": [
+    {
+      "name": "Alica",
+      "type": 93
+    }
+  ],
+  "subjectDN": {
+    "commonName": "vitae",
+    "name": "Clemente"
+  },
+  "subjectX500Principal": {
+    "name": "Christoper"
+  },
+  "type": "Lorem",
+  "version": 91
+}

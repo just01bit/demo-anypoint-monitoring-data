@@ -1,0 +1,76 @@
+{
+  "basicConstraints": 34,
+  "criticalExtensionOIDs": [
+    "sodales",
+    "Pellentesque",
+    "Fusce"
+  ],
+  "extendedKeyUsage": [
+    "arcu",
+    "faucibus",
+    "lectus"
+  ],
+  "extensions": [
+    {
+      "criticality": false,
+      "oid": "viverra"
+    }
+  ],
+  "issuerAlternativeNames": [
+    {
+      "name": "Alison",
+      "type": 39
+    }
+  ],
+  "issuerDN": {
+    "commonName": "a",
+    "name": "Chad"
+  },
+  "issuerUniqueID": [
+    false,
+    false,
+    false
+  ],
+  "issuerX500Principal": {
+    "name": "Alita"
+  },
+  "keyUsage": [
+    false,
+    true
+  ],
+  "name": "Dante",
+  "nonCriticalExtensionOIDs": [
+    "lectus",
+    "eros",
+    "Aliquam"
+  ],
+  "notAfter": "2023-12-29",
+  "notBefore": "2025-02-06",
+  "publicKey": {
+    "algorithm": "elit",
+    "modulus": 46,
+    "params": 74,
+    "publicKey": "dolor"
+  },
+  "serialNumber": 56,
+  "serialNumberObject": {
+    "serialNumber": 90
+  },
+  "sigAlgName": "a",
+  "sigAlgOID": "tempor",
+  "subjectAlternativeNames": [
+    {
+      "name": "Casey",
+      "type": 75
+    }
+  ],
+  "subjectDN": {
+    "commonName": "sodales",
+    "name": "Byron"
+  },
+  "subjectX500Principal": {
+    "name": "Cyril"
+  },
+  "type": "dictum",
+  "version": 89
+}

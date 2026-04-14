@@ -1,0 +1,74 @@
+{
+  "basicConstraints": 85,
+  "criticalExtensionOIDs": [
+    "dolor",
+    "sodales",
+    "vitae"
+  ],
+  "extendedKeyUsage": [
+    "sed",
+    "Aliquam"
+  ],
+  "extensions": [
+    {
+      "criticality": false,
+      "oid": "nunc"
+    }
+  ],
+  "issuerAlternativeNames": [
+    {
+      "name": "Byron",
+      "type": 82
+    }
+  ],
+  "issuerDN": {
+    "commonName": "risus",
+    "name": "Calvin"
+  },
+  "issuerUniqueID": [
+    false,
+    true
+  ],
+  "issuerX500Principal": {
+    "name": "Charley"
+  },
+  "keyUsage": [
+    true,
+    true,
+    true
+  ],
+  "name": "Amal",
+  "nonCriticalExtensionOIDs": [
+    "erat",
+    "risus"
+  ],
+  "notAfter": "2024-12-01",
+  "notBefore": "2022-02-26",
+  "publicKey": {
+    "algorithm": "convallis",
+    "modulus": 24,
+    "params": 22,
+    "publicKey": "dolor"
+  },
+  "serialNumber": 84,
+  "serialNumberObject": {
+    "serialNumber": 33
+  },
+  "sigAlgName": "elit",
+  "sigAlgOID": "consectetur",
+  "subjectAlternativeNames": [
+    {
+      "name": "Analisa",
+      "type": 70
+    }
+  ],
+  "subjectDN": {
+    "commonName": "Fusce",
+    "name": "Adriana"
+  },
+  "subjectX500Principal": {
+    "name": "Alysha"
+  },
+  "type": "Pellentesque",
+  "version": 78
+}

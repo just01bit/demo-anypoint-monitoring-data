@@ -1,76 +1,75 @@
 {
-  "basicConstraints": 96,
+  "basicConstraints": 29,
   "criticalExtensionOIDs": [
-    "nunc",
-    "nisi",
-    "mi"
+    "In",
+    "Fusce",
+    "vitae"
   ],
   "extendedKeyUsage": [
-    "aliquam",
-    "Aliquam",
-    "arcu"
+    "ipsum",
+    "dolor",
+    "vitae"
   ],
   "extensions": [
     {
       "criticality": false,
-      "oid": "erat"
+      "oid": "Pellentesque"
     }
   ],
   "issuerAlternativeNames": [
     {
-      "name": "Andi",
-      "type": 49
+      "name": "Adrian",
+      "type": 39
     }
   ],
   "issuerDN": {
-    "commonName": "Aliquam",
-    "name": "Chad"
+    "commonName": "elit",
+    "name": "Damian"
   },
   "issuerUniqueID": [
     true,
-    true,
+    false,
     true
   ],
   "issuerX500Principal": {
-    "name": "Dalton"
+    "name": "Al"
   },
   "keyUsage": [
-    false,
-    false
+    true,
+    true
   ],
-  "name": "Coleman",
+  "name": "Colin",
   "nonCriticalExtensionOIDs": [
-    "venenatis",
-    "semper",
-    "tempor"
+    "justo",
+    "consectetur"
   ],
-  "notAfter": "2026-03-18",
-  "notBefore": "2024-11-24",
+  "notAfter": "2024-01-07",
+  "notBefore": "2024-01-17",
   "publicKey": {
-    "algorithm": "ac",
-    "modulus": 1,
-    "params": 1,
-    "publicKey": "lectus"
+    "algorithm": "ipsum",
+    "modulus": 15,
+    "params": 69,
+    "publicKey": "molestie"
   },
-  "serialNumber": 10,
+  "serialNumber": 75,
   "serialNumberObject": {
-    "serialNumber": 77
+    "serialNumber": 36
   },
-  "sigAlgName": "ut",
-  "sigAlgOID": "viverra",
+  "sigAlgName": "dictum",
+  "sigAlgOID": "arcu",
   "subjectAlternativeNames": [
     {
-      "name": "Alberto",
-      "type": 62
+      "name": "Alejandra",
+      "type": 36
     }
   ],
   "subjectDN": {
-    "commonName": "lorem",
-    "name": "Al"
+    "commonName": "Aliquam",
+    "name": "Clay"
   },
   "subjectX500Principal": {
-    "name": "Alfonzo"
+    "name": "Dale"
   },
-  "type": "dictum",
-  "version": 77
+  "type": "vitae",
+  "version": 21
 }

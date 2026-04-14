@@ -1,10 +1,9 @@
 # demo-anypoint-monitoring-data
 
 ## Overview
-Up to 14th April 2026, for managed flex gateway, the log forwardinng to external is not available yet. This is on MuleSoft roadmap.
-As a workaround, for MuleSoft Integration Advanced or Titanium customers, you can leverage the platform API - [Anypoint Monitoring Archive API](https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/anypoint-monitoring-archive-api/) to extract metrics data like logs from Anypoinnt Monitoring.
-
-This PoC shows the steps to call the various endpoints of the platform API to retrieve logs for a specific managed flex gateway instance.
+As of 14 April 2026, log forwarding to external systems is not yet supported for managed Flex Gateway. This capability is currently on the MuleSoft roadmap.
+As a workaround, customers with Integration Advanced or Titanium subscriptions can use the [Anypoint Monitoring Archive API](https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/anypoint-monitoring-archive-api/) to extract observability data (including logs) from Anypoint Monitoring.
+This PoC demonstrates how to invoke the relevant Platform API endpoints to retrieve logs for a specific managed Flex Gateway instance.
 
 ## Workflow
 

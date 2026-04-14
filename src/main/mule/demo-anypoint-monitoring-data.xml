@@ -111,13 +111,13 @@
         </foreach>
     </flow>
     
-    <!-- [ACB] <flow name="mq-file-processor-flow" doc:id="mq-file-processor-flow">
+    <flow name="mq-file-processor-flow" doc:id="mq-file-processor-flow">
         <anypoint-mq:subscriber doc:name="Subscriber" doc:id="arxdkv" destination="demo-anypoint-monitoring-data" config-ref="Anypoint_MQ_Config"/>
         <ee:transform doc:name="Extract Download Info" doc:id="extract-download-info">
             <ee:message>
                 <ee:set-payload><![CDATA[%dw 2.0
                     output application/json
-                    &#45;&#45;-
+                    ---
                     payload]]>
                 </ee:set-payload>
             </ee:message>
@@ -129,7 +129,7 @@
         </ee:transform>
         <http:request method="GET" doc:name="Download File" config-ref="HTTP_Request_configuration" url="#[vars.downloadUrl]" outputMimeType="application/octet-stream">
             <http:headers><![CDATA[#[output application/java
-                &#45;&#45;-
+                ---
                 {
                     "Authorization": "Bearer " ++ vars.accessToken
                 }]]]>
@@ -143,7 +143,7 @@
                 <logger level="ERROR" doc:name="Log Error" message="Error processing file #[vars.fileName]: #[error.description]"/>
             </on-error-continue>
         </error-handler>
-    </flow> [ACB] -->
+    </flow>
     
     <sub-flow name="get-access-token" doc:id="abcd1234-5678-9abc-def0-1234567890ab">
         <http:request method="POST" doc:name="Request Token" config-ref="HTTP_Request_configuration" url="https://anypoint.mulesoft.com/accounts/api/v2/oauth2/token" outputMimeType="application/json">

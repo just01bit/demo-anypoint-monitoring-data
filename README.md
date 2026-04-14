@@ -164,12 +164,14 @@ The input payload is like below:
 
 ## Considerations
 1 Decoupled Processing Using Anypoint MQ
+
 In this PoC, the log file download is not handled within the same flow. Instead, Anypoint MQ is used to decouple the process and improve reliability.
 
 - The combined records generated in step 3.2.3 are published to a FIFO queue.
 - A separate flow consumes messages from this queue and performs the log file download independently.
 
 2 Handling Platform API Rate Limits
+
 The Platform API enforces rate limits (e.g., 60 requests per minute). Depending on the volume of log files to extract, you may encounter errors such as **“429 – Too Many Requests.”**
 
 To mitigate this:
